@@ -1,4 +1,4 @@
-local List = require("libraries.List")
+local ArrayList = require("libraries.ArrayList")
 
 local function printListContents(list)
   print("-Print list contents-")
@@ -8,7 +8,7 @@ local function printListContents(list)
   print("-")
 end
 
-local list = List:new() -- Create new List
+local list = ArrayList:new() -- Create new List
 
 list:add(2) -- Add value 2
 print("Add 2 to index 1: " .. list:get(1)) -- Get value 2 in first slot

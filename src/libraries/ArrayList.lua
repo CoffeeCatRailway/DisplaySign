@@ -1,9 +1,10 @@
 -- Initialization
 local ArrayUtils = require("libraries.ArrayUtils")
-local List = {array = {}}
+local ArrayList = {array = {}}
 
-function List:new(other)
+function ArrayList:new(other)
   local self = {}
+  self.__index = self
 
   if other then
     self.array = ArrayUtils:copy(other)
@@ -68,4 +69,4 @@ function List:new(other)
 end
 
 -- Return
-return List
+return ArrayList
