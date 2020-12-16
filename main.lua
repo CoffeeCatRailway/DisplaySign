@@ -1,4 +1,4 @@
-local list = require("List")
+local List = require("List")
 
 local newList = List:new(1, 0) -- Create new List
 newList:add(2) -- Add value 2

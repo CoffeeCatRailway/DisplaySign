@@ -4,12 +4,11 @@ local List = {size = 1, array = {}, default = nil}
 function List:new(size, default)
 	local self = {}
 
-	--self.__index = self
 	self.size = size or 1
-	self.array = initArray(0, default or nil)
+	self.array = self:initArray(0, default or nil)
 
 	-- Private methods
-	local function initArray(diff, default)
+	function self:initArray(diff, default)
 		-- Initialize self.array
 		self.default = default
 		self.array = {}
