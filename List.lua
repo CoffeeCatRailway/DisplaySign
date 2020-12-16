@@ -18,7 +18,7 @@ function List:new(size, default)
 		end
 		return self.array
 	end
-	
+
 	self.array = initArray(0, default or nil)
 
 	-- Public methods
@@ -29,7 +29,7 @@ function List:new(size, default)
 
 		-- Add if has empty space
 		for i = 1,self.size,1 do
-			if self.array[i] == nill then
+			if self.array[i] == nil then
 				self.array[i] = object
 			end
 			index = index + 1

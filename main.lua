@@ -1,6 +1,6 @@
 local List = require("List")
 
-local newList = List:new(1, 0) -- Create new List
+local newList = List:new(1) -- Create new List
 newList:add(2) -- Add value 2
 print(newList:get(1)) -- Get value 2 in first slot
 
