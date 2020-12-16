@@ -18,7 +18,7 @@ local function delete(path)
 end
 
 local function mkdir(path)
-  if not filesystem.exists(saveToDirectory) then
+  if not filesystem.exists(path) then
     print("Making directory -> " .. path)
     os.execute("mkdir " .. path)
   end
