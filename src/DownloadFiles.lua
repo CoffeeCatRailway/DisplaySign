@@ -32,7 +32,7 @@ local function download(path, saveTo)
   else
     print("Downloading -> '" .. path .. "' to '" .. saveTo .. "'")
     local segments = filesystem.segments(saveTo)
-    segments[#segments] = nil
+    segments[#segments] = ""
     local saveToDirectory = segments[1]
     mkdir(saveToDirectory)
 
