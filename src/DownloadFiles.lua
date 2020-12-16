@@ -33,12 +33,12 @@ local function download(path, saveTo)
     print("Downloading -> '" .. path .. "' to '" .. saveTo .. "'")
     local segments = filesystem.segments(saveTo)
     segments[#segments] = ""
-    local saveToDirectory = segments[1]
+    local saveToDirectory = segments[1] .. "/"
     mkdir(saveToDirectory)
 
-    if #segments > 1 then
+    if #segments > 2 then
       for i = 2,#segments,1 do
-        saveToDirectory = saveToDirectory .. "/" .. segments[i]
+        saveToDirectory = saveToDirectory .. segments[i] .. "/"
         mkdir(saveToDirectory)
       end
     end
