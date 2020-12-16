@@ -1,5 +1,5 @@
 -- Initialization
-local ArrayUtils = require("ArrayUtils")
+local ArrayUtils = require("libraries.ArrayUtils")
 local List = {array = {}}
 
 function List:new(other)

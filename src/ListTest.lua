@@ -1,4 +1,4 @@
-local List = require("libraries/List")
+local List = require("libraries.List")
 
 local function printListContents(list)
   print("-Print list contents-")
