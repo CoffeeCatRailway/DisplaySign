@@ -18,8 +18,10 @@ local function delete(path)
 end
 
 local function mkdir(path)
-  print("Making directory -> " .. path)
-  os.execute("mkdir " .. path)
+  if not filesystem.exists(saveToDirectory) then
+    print("Making directory -> " .. path)
+    os.execute("mkdir " .. path)
+  end
 end
 
 local function download(path, saveTo)
@@ -37,9 +39,7 @@ local function download(path, saveTo)
     if #segments > 1 then
       for i = 2,#segments,1 do
         saveToDirectory = saveToDirectory .. "/" .. segments[i]
-        if not filesystem.exists(saveToDirectory) then
-          mkdir(saveToDirectory)
-        end
+        mkdir(saveToDirectory)
       end
     end
 
@@ -49,12 +49,19 @@ end
 
 -- Run
 print("Deleting existing files...")
-
 delete("ListTest.lua")
 delete("libraries")
+print("All existing files deleted!")
 
 print("Downloading files...")
 assert(component.isAvailable("internet"), "Requires internet card")
 download("ListTest.lua")
 download("libraries/List.lua", "libraries/List.lua")
 download("libraries/ArrayUtils.lua", "libraries/ArrayUtils.lua")
+print("All files downloaded!")
+
+local args = {...}
+if #args > 0 then
+  print("Starting " .. args[1] .. "...")
+  os.execute(args[1])
+end
