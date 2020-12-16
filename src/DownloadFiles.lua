@@ -12,48 +12,46 @@ local function delete(path)
     local success, msg = filesystem.remove(path)
     if not success then
       print(msg)
+    else
+      print("Deleted existing -> " .. path)
     end
-    print("Deleted existing -> " .. path)
   end
 end
 
 local function mkdir(path)
+  delete(path)
   if not filesystem.exists(path) then
     print("Making directory -> " .. path)
     os.execute("mkdir " .. path)
   end
 end
 
-local function download(path, saveTo)
+local function download(path)
   delete(path)
   local url = "wget https://raw.githubusercontent.com/CoffeeCatRailway/DisplaySign/main/src/"
-  if saveTo == nil then
-    print("Downloading -> '" .. path .. "'")
-    os.execute(url .. path)
-  else
-    print("Downloading -> '" .. path .. "' to '" .. saveTo .. "'")
-    local segments = filesystem.segments(saveTo)
-    segments[#segments] = ""
-    local saveToDirectory = segments[1] .. "/"
-    mkdir(saveToDirectory)
+  
+  print("Downloading -> '" .. path .. "'")
+  local segments = filesystem.segments(path)
+  segments[#segments] = ""
+  local saveToDirectory = segments[1] .. "/"
+  mkdir(saveToDirectory)
 
-    if #segments > 2 then
-      for i = 2,#segments,1 do
-        saveToDirectory = saveToDirectory .. segments[i] .. "/"
-        mkdir(saveToDirectory)
-      end
+  if #segments > 2 then
+    for i = 2,#segments,1 do
+      saveToDirectory = saveToDirectory .. segments[i] .. "/"
+      mkdir(saveToDirectory)
     end
-
-    os.execute(url .. path .. " " .. saveTo)
   end
+
+  os.execute(url .. path .. " " .. path)
 end
 
 -- Run
 print("Downloading files...")
 assert(component.isAvailable("internet"), "Requires internet card")
 download("ListTest.lua")
-download("libraries/List.lua", "libraries/List.lua")
-download("libraries/ArrayUtils.lua", "libraries/ArrayUtils.lua")
+download("libraries/List.lua")
+download("libraries/ArrayUtils.lua")
 print("All files downloaded!")
 
 local args = {...}
