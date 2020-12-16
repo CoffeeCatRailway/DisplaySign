@@ -50,7 +50,7 @@ end
 print("Downloading files...")
 assert(component.isAvailable("internet"), "Requires internet card")
 download("ListTest.lua")
-download("libraries/List.lua")
+download("libraries/ArrayList.lua")
 download("libraries/ArrayUtils.lua")
 print("All files downloaded!")
 
