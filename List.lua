@@ -12,15 +12,15 @@ local function initArray(diff, default)
 	return self.array
 end
 
-function List:new(o, size, default)
-	o = o or {}
-	setmetatable(o, self)
+function List:new(size, default)
+	local self = {}
+
 	self.__index = self
 	self.size = size or 1
 	self.array = initArray(0, default or nil)
 
 	-- Methods
-	function List:add(object, forceIn)
+	function self:add(object, forceIn)
 		-- Add element to array
 		local force = forceIn or true
 		local index = 0;
@@ -48,19 +48,19 @@ function List:new(o, size, default)
 		end
 	end
 
-	function List:get(index)
+	function self:get(index)
 		-- Get element in array
 		assert(type(index) == "number", "Index '" .. tostring(index) .. "' must be a integer!")
 		assert(index >= 1 or index <= self.size, "Index out of bounds! [1," .. tostring(self.size) .. "]")
 		return self.array[index]
 	end
 
-	function List:getSize()
+	function self:getSize()
 		-- Get size of array
 		return self.size
 	end
 	
-	return o
+	return self
 end
 
 -- Return
