@@ -5,10 +5,10 @@ function List:new(size, default)
 	local self = {}
 
 	self.size = size or 1
-	self.array = self:initArray(0, default or nil)
+	self.array = {}
 
 	-- Private methods
-	function self:initArray(diff, default)
+	local function initArray(diff, default)
 		-- Initialize self.array
 		self.default = default
 		self.array = {}
@@ -18,6 +18,8 @@ function List:new(size, default)
 		end
 		return self.array
 	end
+	
+	self.array = initArray(0, default or nil)
 
 	-- Public methods
 	function self:add(object, forceIn)
