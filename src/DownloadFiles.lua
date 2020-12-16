@@ -13,7 +13,7 @@ local function delete(path)
     if not success then
       print(msg)
     end
-    print("Deleted -> " .. path)
+    print("Deleted existing -> " .. path)
   end
 end
 
@@ -25,6 +25,7 @@ local function mkdir(path)
 end
 
 local function download(path, saveTo)
+  delete(path)
   local url = "wget https://raw.githubusercontent.com/CoffeeCatRailway/DisplaySign/main/src/"
   if saveTo == nil then
     print("Downloading -> '" .. path .. "'")
@@ -48,11 +49,6 @@ local function download(path, saveTo)
 end
 
 -- Run
-print("Deleting existing files...")
-delete("ListTest.lua")
-delete("libraries")
-print("All existing files deleted!")
-
 print("Downloading files...")
 assert(component.isAvailable("internet"), "Requires internet card")
 download("ListTest.lua")
