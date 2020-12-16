@@ -23,7 +23,6 @@ delete("ListTest.lua")
 delete("libraries")
 
 print("Downloading files...")
-assert(component.isAvailable("os"), "Requires os to run")
 assert(component.isAvailable("internet"), "Requires internet card")
 os.execute("wget https://raw.githubusercontent.com/CoffeeCatRailway/DisplaySign/main/src/ListTest.lua")
 os.execute("wget https://raw.githubusercontent.com/CoffeeCatRailway/DisplaySign/main/src/libraries/List.lua")
