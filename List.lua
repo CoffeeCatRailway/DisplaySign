@@ -1,25 +1,26 @@
 -- Initialization
 local List = {size = 1, array = {}, default = nil}
 
-local function initArray(diff, default)
-	-- Initialize self.array
-	self.default = default
-	self.array = {}
-	local newSize = self.size + diff
-	for i = 1,newSize,1 do
-		self.array[i] = self.default
-	end
-	return self.array
-end
-
 function List:new(size, default)
 	local self = {}
 
-	self.__index = self
+	--self.__index = self
 	self.size = size or 1
 	self.array = initArray(0, default or nil)
 
-	-- Methods
+	-- Private methods
+	local function initArray(diff, default)
+		-- Initialize self.array
+		self.default = default
+		self.array = {}
+		local newSize = self.size + diff
+		for i = 1,newSize,1 do
+			self.array[i] = self.default
+		end
+		return self.array
+	end
+
+	-- Public methods
 	function self:add(object, forceIn)
 		-- Add element to array
 		local force = forceIn or true
@@ -59,7 +60,7 @@ function List:new(size, default)
 		-- Get size of array
 		return self.size
 	end
-	
+
 	return self
 end
 
