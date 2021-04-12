@@ -11,6 +11,13 @@ function ArrayList.new(other)
   else
     self.array = ArrayUtils.initArray(0)
   end
+  
+  -- Private methods
+  local function assertIndex(index)
+    -- Asset the given index
+    assert(type(index) == "number", "Index '" .. tostring(index) .. "' must be a integer!")
+    assert(index >= 1 and index <= self.size(), "Index out of bounds! [" .. tostring(index) .. "," .. tostring(self.size()) .. "]")
+  end
 
   -- Public methods
   function self.isEmpty()
@@ -36,14 +43,13 @@ function ArrayList.new(other)
 
   function self.get(index)
     -- Get element in array
-    assert(type(index) == "number", "Index '" .. tostring(index) .. "' must be a integer!")
-    assert(index >= 1 and index <= self.size(), "Index out of bounds! [" .. tostring(index) .. "," .. tostring(self.size()) .. "]")
+    assertIndex(index)
     return self.array[index]
   end
 
   function self.remove(index)
     -- Remove element in array
-    assert(type(index) == "number", "Index '" .. tostring(index) .. "' must be a integer!")
+    assertIndex(index)
 
     local oldArray = ArrayUtils.copy(self.array)
     local newArray = ArrayUtils.initArray(self.size() - 1)
@@ -55,8 +61,7 @@ function ArrayList.new(other)
   
   function self.set(index, object)
     -- Remove element in array at certain point
-    assert(type(index) == "number", "Index '" .. tostring(index) .. "' must be a integer!")
-    assert(index >= 1 and index <= self.size(), "Index out of bounds! [" .. tostring(index) .. "," .. tostring(self.size()) .. "]")
+    assertIndex(index)
     self.array[index] = object
   end
 
